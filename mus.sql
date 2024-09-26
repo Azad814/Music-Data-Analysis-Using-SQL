@@ -1,11 +1,14 @@
 use data_music;
 select * from album2 ;
+-- find the employee with highest level
 select *  from employee 
 order by levels desc
 limit 1;
+
 select count(1), billing_ country from invoice
 group by billing_country
 order by count(1) desc;
+
 select * from invoice
 order by total desc
 limit 3;	
@@ -18,8 +21,11 @@ join invoice i
 on c.customer_id = i.invoice_id
 group by c.customer_id, c.first_name, c.last_name
 order by total desc;
+
+
 select * from genre;
 select * from customer;
+
 select email, first_name, last_name 
 from customer
 join invoice on  customer.customer_id= invoice.customer_id
@@ -35,6 +41,7 @@ select * from album2;
 select * from artist;
 select * from track;
 select * from genre;
+
 select artist.name, count(artist.artist_id)
 from track  
 join album2 on album2.album_id= track.album_id 
@@ -42,6 +49,8 @@ join artist on album2.artist_id=artist.artist_id
 where track.genre_id=1
 group by artist.artist_id, artist.name 
 order by count(1) desc;
+
+
 select name 
 from track 
 where milliseconds>(select avg(milliseconds) from track)
